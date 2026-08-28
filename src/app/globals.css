@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+:root {
+  --color-black: #08080a;
+  --color-charcoal: #131316;
+  --color-charcoal-light: #1c1c20;
+  --color-charcoal-border: #2b2b30;
+
+  --color-gold: #c9a227;
+  --color-gold-light: #e8cd6f;
+  --color-gold-dark: #8c711d;
+
+  --color-cream: #f4f1ea;
+  --color-gray-300: #c9c8c4;
+  --color-gray-500: #8f8e8a;
+}
+
+@theme inline {
+  --color-black: var(--color-black);
+  --color-charcoal: var(--color-charcoal);
+  --color-charcoal-light: var(--color-charcoal-light);
+  --color-charcoal-border: var(--color-charcoal-border);
+
+  --color-gold: var(--color-gold);
+  --color-gold-light: var(--color-gold-light);
+  --color-gold-dark: var(--color-gold-dark);
+
+  --color-cream: var(--color-cream);
+  --color-gray-300: var(--color-gray-300);
+  --color-gray-500: var(--color-gray-500);
+
+  --font-display: var(--font-oswald);
+  --font-serif-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-cream);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-black);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 6s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
