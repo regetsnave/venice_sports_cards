@@ -30,7 +30,9 @@ export default function SectionHeading({
   return (
     <div className={`flex flex-col gap-4 max-w-2xl ${alignCls}`}>
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className={`font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold uppercase tracking-tight text-balance ${titleTone}`}>
+      <h2
+        className={`font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-bold uppercase tracking-tight text-balance leading-[1.05] ${titleTone}`}
+      >
         {title}
       </h2>
       {description ? (

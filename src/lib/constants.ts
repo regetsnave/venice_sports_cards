@@ -20,10 +20,20 @@ export const business = {
     display: "(941) 218-4541",
     href: "tel:+19412184541",
   },
-  // TODO(business): confirm official hours with the owner and replace.
+  // Provided by the business owner as their current public listing hours.
+  // TODO(business): confirm these still match the live Google listing before launch.
   hours: {
-    isPlaceholder: true,
-    display: "Hours coming soon — call to confirm",
+    isPlaceholder: false,
+    display: "9:00 AM – 6:00 PM Daily",
+    schedule: [
+      { day: "Monday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Tuesday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Wednesday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Thursday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Friday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Saturday", hours: "9:00 AM – 6:00 PM" },
+      { day: "Sunday", hours: "9:00 AM – 6:00 PM" },
+    ],
   },
   // TODO(business): confirm a public contact email, if any.
   email: {
@@ -33,16 +43,24 @@ export const business = {
   // TODO(business): add real, confirmed social profile URLs here.
   // Left empty on purpose — no accounts have been provided yet.
   social: [] as { label: string; href: string }[],
+  // No confirmed Google Place ID yet, so this points to a search rather
+  // than a guessed/fabricated direct review-write link.
+  googleSearchUrl:
+    "https://www.google.com/search?q=Venice+Sports+Cards+%26+Collectibles+Venice+FL+reviews",
 } as const;
 
 export const categories = [
-  { slug: "football", label: "Football" },
-  { slug: "basketball", label: "Basketball" },
-  { slug: "baseball", label: "Baseball" },
   { slug: "pokemon", label: "Pokémon" },
-  { slug: "collectibles", label: "Collectibles" },
-  { slug: "graded-cards", label: "Graded Cards" },
+  { slug: "one-piece", label: "One Piece" },
+  { slug: "football", label: "Football" },
+  { slug: "baseball", label: "Baseball" },
+  { slug: "basketball", label: "Basketball" },
+  { slug: "hockey", label: "Hockey" },
+  { slug: "graded", label: "Graded Cards" },
+  { slug: "sealed", label: "Sealed Product" },
 ] as const;
+
+export type CategorySlug = (typeof categories)[number]["slug"];
 
 export const primaryNav = [
   { label: "Home", href: "/" },
@@ -51,7 +69,24 @@ export const primaryNav = [
   { label: "Trade", href: "/trade" },
   { label: "Products", href: "/products" },
   { label: "About Us", href: "/about" },
+  { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
 ] as const;
+
+export const footerNav = {
+  shop: [
+    { label: "All Products", href: "/products" },
+    ...categories.map((c) => ({ label: c.label, href: `/products/${c.slug}` })),
+  ],
+  store: [
+    { label: "Buy", href: "/buy" },
+    { label: "Sell", href: "/sell" },
+    { label: "Trade", href: "/trade" },
+    { label: "About Us", href: "/about" },
+    { label: "Reviews", href: "/reviews" },
+    { label: "Visit Us", href: "/visit" },
+    { label: "Contact", href: "/contact" },
+  ],
+} as const;
 
 export const siteUrl = "https://www.venicesportscards.com"; // TODO(business): confirm final production domain

@@ -1,23 +1,37 @@
 import Container from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import Reveal from "@/components/ui/Reveal";
+import SectionDivider from "@/components/ui/SectionDivider";
+import DisplayCaseWall from "@/components/ui/concept/DisplayCaseWall";
+import CardBoxStack from "@/components/ui/concept/CardBoxStack";
+import StoreSignArt from "@/components/ui/concept/StoreSignArt";
 
 export default function AboutSection() {
   return (
-    <section className="bg-cream text-black py-20 sm:py-28" aria-labelledby="about-heading">
-      <Container className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-        <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[26rem] sm:h-[30rem]">
-          <ImagePlaceholder className="row-span-2" label="Inside the shop" />
-          <ImagePlaceholder label="Card inventory" />
-          <ImagePlaceholder label="Storefront" />
-        </div>
+    <section className="bg-cream text-black" aria-labelledby="about-heading">
+      <SectionDivider tone="light" />
+      <Container className="py-20 sm:py-28 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+        <Reveal className="relative">
+          <div
+            className="pointer-events-none absolute -inset-3 border border-gold-dark/25"
+            aria-hidden="true"
+          />
+          <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[26rem] sm:h-[30rem] shadow-[0_30px_60px_-25px_rgba(0,0,0,0.35)]">
+            <DisplayCaseWall className="row-span-2" />
+            <CardBoxStack />
+            <StoreSignArt />
+          </div>
+          <p className="mt-3 text-xs text-charcoal/50 italic">
+            Concept visuals for website design purposes &mdash; final photography to be provided by the shop.
+          </p>
+        </Reveal>
 
-        <div>
+        <Reveal>
           <Eyebrow>About Us</Eyebrow>
           <h2
             id="about-heading"
-            className="mt-5 font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-semibold uppercase tracking-tight text-black text-balance leading-[1.05]"
+            className="mt-5 font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-bold uppercase tracking-tight text-black text-balance leading-[1.05]"
           >
             More Than a Hobby.
             <span className="block text-gold-dark">It&rsquo;s a Community.</span>
@@ -30,12 +44,17 @@ export default function AboutSection() {
             every time you walk through the door.
           </p>
           <div className="mt-8">
-            <ButtonLink href="/about" variant="secondary" className="border-black/30 text-black hover:border-gold-dark hover:bg-gold/10">
+            <ButtonLink
+              href="/about"
+              variant="secondary"
+              className="!border-black/25 !text-black hover:!border-gold-dark hover:!bg-gold/10 hover:!text-gold-dark"
+            >
               Learn More About Us
             </ButtonLink>
           </div>
-        </div>
+        </Reveal>
       </Container>
+      <SectionDivider tone="light" />
     </section>
   );
 }

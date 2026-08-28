@@ -4,11 +4,12 @@ import { FormEvent, useState } from "react";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import Reveal from "@/components/ui/Reveal";
 import { business } from "@/lib/constants";
 import { PhoneIcon } from "@/components/ui/icons";
 
 const inputCls =
-  "w-full bg-black border border-charcoal-border px-4 py-3 text-sm text-cream placeholder:text-gray-500 focus:outline-none focus:border-gold";
+  "w-full bg-black border border-charcoal-border px-4 py-3 text-sm text-cream placeholder:text-gray-500 focus:outline-none focus:border-gold focus:shadow-[0_0_0_3px_rgba(198,161,91,0.15)] transition-shadow";
 
 // TODO(integration): connect this to a real endpoint (API route + email
 // service, or a form provider) before launch. Currently front-end only.
@@ -23,7 +24,7 @@ export default function ContactSection() {
   return (
     <section className="bg-charcoal py-20 sm:py-24 border-t border-charcoal-border" aria-labelledby="contact-heading">
       <Container className="grid lg:grid-cols-5 gap-14">
-        <div className="lg:col-span-2 flex flex-col gap-6" id="contact-heading">
+        <Reveal className="lg:col-span-2 flex flex-col gap-6" id="contact-heading">
           <SectionHeading eyebrow="Get In Touch" title="Contact Us" align="left" />
           <p className="text-sm text-gray-300 leading-relaxed">
             Questions about buying, selling, or trading? Send us a message and
@@ -36,9 +37,9 @@ export default function ContactSection() {
             <PhoneIcon className="size-5" />
             {business.phone.display}
           </a>
-        </div>
+        </Reveal>
 
-        <div className="lg:col-span-3">
+        <Reveal className="lg:col-span-3">
           {status === "submitted" ? (
             <div className="border border-gold/30 bg-black p-8" role="status">
               <p className="font-display text-lg text-gold uppercase">Message Sent</p>
@@ -79,7 +80,7 @@ export default function ContactSection() {
               </div>
             </form>
           )}
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

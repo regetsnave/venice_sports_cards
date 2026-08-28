@@ -29,13 +29,22 @@ const items = [
 
 export default function StoreInfoStrip() {
   return (
-    <section className="bg-charcoal border-b border-charcoal-border" aria-label="Store information">
-      <Container className="py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+    <section className="relative bg-charcoal border-b border-charcoal-border" aria-label="Store information">
+      <div
+        className="absolute top-0 inset-x-0 h-px"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, transparent 0%, var(--color-gold) 50%, transparent 100%)",
+          opacity: 0.4,
+        }}
+        aria-hidden="true"
+      />
+      <Container className="py-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {items.map(({ icon: Icon, label, value, href }) => {
           const content = (
-            <div className="flex items-center gap-3.5">
-              <span className="flex items-center justify-center size-11 shrink-0 border border-gold/40 text-gold">
-                <Icon className="size-5" />
+            <div className="group flex items-center gap-3.5">
+              <span className="flex items-center justify-center size-11 shrink-0 rounded-full border border-gold/40 text-gold transition-colors group-hover:border-gold group-hover:bg-gold/10">
+                <Icon className="size-[1.1rem]" />
               </span>
               <span className="flex flex-col min-w-0">
                 <span className="font-display text-[0.65rem] font-semibold uppercase tracking-widest text-gold">
@@ -51,7 +60,7 @@ export default function StoreInfoStrip() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-              className="hover:opacity-80 transition-opacity"
+              className="transition-opacity"
             >
               {content}
             </a>

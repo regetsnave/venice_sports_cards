@@ -4,7 +4,7 @@ import CategoryGrid from "@/components/home/CategoryGrid";
 import AboutSection from "@/components/home/AboutSection";
 import WhyShopWithUs from "@/components/home/WhyShopWithUs";
 import LatestArrivals from "@/components/home/LatestArrivals";
-import CustomerReviews from "@/components/home/CustomerReviews";
+import GoogleReviewsPreview from "@/components/home/GoogleReviewsPreview";
 import Newsletter from "@/components/home/Newsletter";
 import StoreLocation from "@/components/home/StoreLocation";
 import ContactSection from "@/components/home/ContactSection";
@@ -18,7 +18,7 @@ export default function Home() {
       <AboutSection />
       <WhyShopWithUs />
       <LatestArrivals />
-      <CustomerReviews />
+      <GoogleReviewsPreview />
       <Newsletter />
       <StoreLocation />
       <ContactSection />

@@ -157,8 +157,14 @@ export function ArrowRightIcon(props: IconProps) {
 export function FootballIcon(props: IconProps) {
   return (
     <svg {...base} {...props}>
-      <ellipse cx="12" cy="12" rx="8" ry="5.2" transform="rotate(-40 12 12)" />
-      <path d="M8.3 15.7 15.7 8.3M9.5 9.5l1.4 1.4M13.1 13.1l1.4 1.4M8.9 12.5l1.4 1.4M11.7 9.7l1.4 1.4" />
+      <path
+        d="M12 3.5c3.2 0 6 3.9 6 8.5s-2.8 8.5-6 8.5-6-3.9-6-8.5 2.8-8.5 6-8.5Z"
+        transform="rotate(-38 12 12)"
+      />
+      <g transform="rotate(-38 12 12)">
+        <path d="M8.7 12h6.6" />
+        <path d="M10 10.5v3M12 10v4M14 10.5v3" />
+      </g>
     </svg>
   );
 }
@@ -207,6 +213,60 @@ export function GradedCardIcon(props: IconProps) {
       <rect x="5" y="3" width="14" height="18" rx="1.5" />
       <rect x="7.3" y="5.3" width="9.4" height="9" rx="0.5" />
       <path d="M7.3 16.5h9.4M7.3 18.5h5.5" />
+    </svg>
+  );
+}
+
+export function TrophyIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+      <path d="M7 5H4.5a1 1 0 0 0-1 1.2C4 8.5 5.5 10 7 10M17 5h2.5a1 1 0 0 1 1 1.2C20 8.5 18.5 10 17 10" />
+      <path d="M12 14v3.5M9 20.5h6M9.8 17.5h4.4l.4 3H9.4l.4-3Z" />
+    </svg>
+  );
+}
+
+export function BoxIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 8.5 12 4l8 4.5-8 4.5-8-4.5Z" />
+      <path d="M4 8.5v7L12 20l8-4.5v-7M12 13v7" />
+    </svg>
+  );
+}
+
+export function CompassIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M15.5 8.5 13 13l-4.5 2.5L11 11l4.5-2.5Z" />
+      <path d="M12 3.8v1.4M12 18.8v1.4M3.8 12h1.4M18.8 12h1.4" />
+    </svg>
+  );
+}
+
+export function HockeyIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <ellipse cx="12" cy="18.3" rx="5.2" ry="1.6" />
+      <path d="M6 4.5 9.5 16M18 4.5c-2.6 0-4.6 1-5.6 2.7-1 1.8-.6 3.6 1.1 4.2 1.7.6 3.9-.3 4.9-2" />
+    </svg>
+  );
+}
+
+/**
+ * Original fantasy-creature silhouette for TCG-style demo card art.
+ * Deliberately abstract/geometric — not modeled on any real character.
+ */
+export function CreatureIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 6c-1.4 0-2.4 1-2.7 2.3C7.6 8.7 6.2 10 6.2 12c0 3.4 2.6 6.3 5.8 6.3s5.8-2.9 5.8-6.3c0-2-1.4-3.3-3.1-3.7C14.4 7 13.4 6 12 6Z" />
+      <path d="M8.3 8.2 6 6.3M15.7 8.2 18 6.3" />
+      <circle cx="9.8" cy="12.3" r="0.9" fill="currentColor" stroke="none" />
+      <circle cx="14.2" cy="12.3" r="0.9" fill="currentColor" stroke="none" />
+      <path d="M10.3 15c.6.5 2.8.5 3.4 0" />
     </svg>
   );
 }
