@@ -77,20 +77,6 @@ export default function RootLayout({
         className={`${inter.variable} ${oswald.variable} ${playfair.variable} antialiased bg-black text-cream`}
       >
         <SkipToContent />
-        {/* TEMPORARY DIAGNOSTIC MARKER — remove after live-deploy verification */}
-        <div
-          style={{
-            background: "#ffe600",
-            color: "#000",
-            fontSize: "28px",
-            fontWeight: 900,
-            textAlign: "center",
-            padding: "24px 12px",
-            letterSpacing: "1px",
-          }}
-        >
-          DEPLOY TEST — REAL CARD BUILD 0830
-        </div>
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
