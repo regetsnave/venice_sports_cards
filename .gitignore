@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# highest-quality originals of real shop photography (see scripts/fetch-cards.mjs) —
+# kept locally, not committed; public/cards/** holds the optimized web copies
+/source-assets
+
 # debug
 npm-debug.log*
 yarn-debug.log*

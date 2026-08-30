@@ -68,6 +68,7 @@ export const primaryNav = [
   { label: "Sell", href: "/sell" },
   { label: "Trade", href: "/trade" },
   { label: "Products", href: "/products" },
+  { label: "Gallery", href: "/gallery" },
   { label: "About Us", href: "/about" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
@@ -76,6 +77,7 @@ export const primaryNav = [
 export const footerNav = {
   shop: [
     { label: "All Products", href: "/products" },
+    { label: "Photo Gallery", href: "/gallery" },
     ...categories.map((c) => ({ label: c.label, href: `/products/${c.slug}` })),
   ],
   store: [

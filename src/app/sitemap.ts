@@ -4,7 +4,18 @@ import { demoInventory, primaryCategoryFor } from "@/data/demoInventory";
 
 export const dynamic = "force-static";
 
-const staticRoutes = ["/", "/products", "/buy", "/sell", "/trade", "/about", "/contact", "/visit", "/reviews"];
+const staticRoutes = [
+  "/",
+  "/products",
+  "/gallery",
+  "/buy",
+  "/sell",
+  "/trade",
+  "/about",
+  "/contact",
+  "/visit",
+  "/reviews",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

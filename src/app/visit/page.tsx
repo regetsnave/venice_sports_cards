@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import PageHero from "@/components/ui/PageHero";
 import StoreLocation from "@/components/home/StoreLocation";
 import Container from "@/components/ui/Container";
+import SectionHeading from "@/components/ui/SectionHeading";
+import StoreInteriorGallery from "@/components/visit/StoreInteriorGallery";
 import { business } from "@/lib/constants";
 import { ClockIcon } from "@/components/ui/icons";
+import { getPhotosByCategory } from "@/data/realCardPhotos";
 
 export const metadata: Metadata = {
   title: "Visit Our Store",
@@ -11,6 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function VisitPage() {
+  const storeInteriorPhotos = getPhotosByCategory("store-interior");
+
   return (
     <>
       <PageHero
@@ -34,6 +39,17 @@ export default function VisitPage() {
           </div>
         </Container>
       </section>
+
+      {storeInteriorPhotos.length > 0 ? (
+        <section className="bg-black py-16 sm:py-20" aria-labelledby="inside-the-store-heading">
+          <Container className="flex flex-col gap-10">
+            <div id="inside-the-store-heading">
+              <SectionHeading eyebrow="Take a Look Around" title="Inside the Store" align="left" />
+            </div>
+            <StoreInteriorGallery photos={storeInteriorPhotos} />
+          </Container>
+        </section>
+      ) : null}
 
       <StoreLocation />
     </>

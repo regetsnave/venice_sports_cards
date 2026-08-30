@@ -99,6 +99,20 @@ body {
   transform: translateY(0);
 }
 
+/* Lightbox open: restrained fade only, no motion/scale */
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-lightbox-fade {
+  animation: lightbox-fade 0.18s ease-out;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

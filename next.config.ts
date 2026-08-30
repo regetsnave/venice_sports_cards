@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
   basePath: repoBasePath,
   assetPrefix: `${repoBasePath}/`,
   trailingSlash: true,
+  // Exposes the base path to app code (see src/lib/basePath.ts) so plain
+  // <img> references to /public assets can be prefixed correctly — next/image's
+  // default loader isn't available under `output: "export"`, so we don't use it.
+  env: {
+    NEXT_PUBLIC_BASE_PATH: repoBasePath,
+  },
 };
 
 export default nextConfig;
