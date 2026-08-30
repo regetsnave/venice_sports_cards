@@ -49,15 +49,19 @@ export const business = {
     "https://www.google.com/search?q=Venice+Sports+Cards+%26+Collectibles+Venice+FL+reviews",
 } as const;
 
+/**
+ * Real photography categories — matches src/data/realCardPhotos.ts'
+ * RealPhotoCategory exactly (minus "store-interior", which isn't a
+ * shop-by-category concept). Sports cards aren't tagged by individual
+ * sport in the real photo set (several shots show multiple sports at
+ * once), so there's a single "Sports Cards" category rather than the
+ * old fictional per-sport split.
+ */
 export const categories = [
+  { slug: "sports-cards", label: "Sports Cards" },
   { slug: "pokemon", label: "Pokémon" },
   { slug: "one-piece", label: "One Piece" },
-  { slug: "football", label: "Football" },
-  { slug: "baseball", label: "Baseball" },
-  { slug: "basketball", label: "Basketball" },
-  { slug: "hockey", label: "Hockey" },
-  { slug: "graded", label: "Graded Cards" },
-  { slug: "sealed", label: "Sealed Product" },
+  { slug: "in-store-pulls", label: "In-Store Pulls" },
 ] as const;
 
 export type CategorySlug = (typeof categories)[number]["slug"];
@@ -67,7 +71,6 @@ export const primaryNav = [
   { label: "Buy", href: "/buy" },
   { label: "Sell", href: "/sell" },
   { label: "Trade", href: "/trade" },
-  { label: "Products", href: "/products" },
   { label: "Gallery", href: "/gallery" },
   { label: "About Us", href: "/about" },
   { label: "Reviews", href: "/reviews" },
@@ -76,9 +79,8 @@ export const primaryNav = [
 
 export const footerNav = {
   shop: [
-    { label: "All Products", href: "/products" },
     { label: "Photo Gallery", href: "/gallery" },
-    ...categories.map((c) => ({ label: c.label, href: `/products/${c.slug}` })),
+    ...categories.map((c) => ({ label: c.label, href: `/gallery?tab=${c.slug}` })),
   ],
   store: [
     { label: "Buy", href: "/buy" },

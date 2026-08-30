@@ -4,10 +4,10 @@ import Container from "@/components/ui/Container";
 import PageHero from "@/components/ui/PageHero";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
-import DemoProductCard from "@/components/ui/concept/DemoProductCard";
+import CardGallery from "@/components/ui/CardGallery";
 import { ArrowRightIcon } from "@/components/ui/icons";
 import { categories } from "@/lib/constants";
-import { featuredProducts, DEMO_DISCLAIMER } from "@/data/demoInventory";
+import { featuredCardPhotos } from "@/data/featuredCardPhotos";
 
 export const metadata: Metadata = {
   title: "Buy Cards",
@@ -63,7 +63,7 @@ export default function BuyPage() {
             {categories.map((c) => (
               <Link
                 key={c.slug}
-                href={`/products/${c.slug}`}
+                href={`/gallery?tab=${c.slug}`}
                 className="group flex items-center gap-1.5 border border-charcoal-border px-4 py-2 text-sm text-cream/85 hover:text-gold hover:border-gold/50 transition-colors"
               >
                 {c.label}
@@ -77,17 +77,15 @@ export default function BuyPage() {
       <section className="bg-charcoal border-y border-charcoal-border py-16 sm:py-20">
         <Container className="flex flex-col gap-10">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <SectionHeading eyebrow="Inventory Preview" title="Demo Products" align="left" />
-            <ButtonLink href="/products" variant="secondary">
-              View All Products
+            <SectionHeading eyebrow="Inventory Preview" title="A Look at What's In Stock" align="left" />
+            <ButtonLink href="/gallery" variant="secondary">
+              View Full Gallery
             </ButtonLink>
           </div>
-          <p className="text-xs text-gray-500 italic max-w-2xl">{DEMO_DISCLAIMER}</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-            {featuredProducts.slice(0, 4).map((p) => (
-              <DemoProductCard key={p.id} card={p} />
-            ))}
-          </div>
+          <CardGallery
+            photos={featuredCardPhotos.slice(0, 4)}
+            altLabel="Card from Venice Sports Cards & Collectibles"
+          />
         </Container>
       </section>
 

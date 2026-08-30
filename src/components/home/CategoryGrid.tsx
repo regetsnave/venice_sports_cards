@@ -2,12 +2,15 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
-import RawCard from "@/components/ui/concept/RawCard";
-import GradedSlab from "@/components/ui/concept/GradedSlab";
-import SealedPackArt from "@/components/ui/concept/SealedPackArt";
 import { categories } from "@/lib/constants";
-import { categoryPicks } from "@/data/demoInventory";
+import { getPhotosByCategory, type RealPhotoCategory } from "@/data/realCardPhotos";
+import { withBasePath } from "@/lib/basePath";
 import { ArrowRightIcon } from "@/components/ui/icons";
+
+/** One representative real photo per real category, for the tile thumbnail. */
+function representativePhoto(slug: RealPhotoCategory) {
+  return getPhotosByCategory(slug)[0];
+}
 
 export default function CategoryGrid() {
   return (
@@ -19,13 +22,13 @@ export default function CategoryGrid() {
           </div>
         </Reveal>
 
-        <Reveal className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        <Reveal className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((cat) => {
-            const card = categoryPicks[cat.slug];
+            const photo = representativePhoto(cat.slug);
             return (
               <Link
                 key={cat.slug}
-                href={`/products/${cat.slug}`}
+                href={`/gallery?tab=${cat.slug}`}
                 className="group relative flex flex-col border border-charcoal-border bg-charcoal hover:border-gold/60 transition-colors duration-300"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-charcoal-light via-charcoal to-black flex items-center justify-center">
@@ -37,17 +40,20 @@ export default function CategoryGrid() {
                     }}
                     aria-hidden="true"
                   />
-                  <div className="relative w-[42%] aspect-[5/7] -rotate-6 transition-transform duration-300 ease-out group-hover:-rotate-3 group-hover:scale-105">
-                    {card.condition === "graded" && <GradedSlab card={card} />}
-                    {card.condition === "raw" && <RawCard card={card} />}
-                    {card.condition === "sealed" && <SealedPackArt card={card} />}
-                  </div>
+                  {photo ? (
+                    <img
+                      src={withBasePath(photo.thumbSrc)}
+                      alt={`${cat.label} from Venice Sports Cards & Collectibles`}
+                      width={photo.width}
+                      height={photo.height}
+                      loading="lazy"
+                      decoding="async"
+                      className="relative w-[46%] aspect-[5/7] object-contain -rotate-6 transition-transform duration-300 ease-out group-hover:-rotate-3 group-hover:scale-105 drop-shadow-[0_14px_22px_rgba(0,0,0,0.55)]"
+                    />
+                  ) : null}
 
                   <span className="absolute top-2.5 left-2.5 w-2.5 h-2.5 border-t border-l border-gold/40 group-hover:border-gold/80 transition-colors" aria-hidden="true" />
                   <span className="absolute bottom-2.5 right-2.5 w-2.5 h-2.5 border-b border-r border-gold/40 group-hover:border-gold/80 transition-colors" aria-hidden="true" />
-                  <span className="absolute top-2 right-2.5 text-[0.5rem] font-display uppercase tracking-widest text-gray-500/80 bg-black/50 px-1.5 py-0.5">
-                    Concept
-                  </span>
                 </div>
 
                 <div className="flex items-center justify-between gap-2 px-4 sm:px-5 py-4 border-t border-charcoal-border group-hover:border-gold/30 transition-colors">
@@ -55,7 +61,7 @@ export default function CategoryGrid() {
                     {cat.label}
                   </span>
                   <span className="flex items-center gap-1 text-[0.7rem] uppercase tracking-wide text-gray-500 group-hover:text-gold transition-colors">
-                    Shop
+                    View
                     <ArrowRightIcon className="size-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                   </span>
                 </div>

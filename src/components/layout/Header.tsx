@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import TopBar from "./TopBar";
 import { categories, primaryNav } from "@/lib/constants";
 import { ButtonLink } from "@/components/ui/Button";
-import { ChevronDownIcon, CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 
 function NavLink({ href, label, active }: { href: string; label: string; active: boolean }) {
   return (
@@ -54,45 +54,11 @@ export default function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-5 xl:gap-7" aria-label="Primary">
-            {primaryNav.map((item) =>
-              item.label === "Products" ? (
-                <div key={item.href} className="relative group">
-                  <button
-                    className="flex items-center gap-1.5 font-display text-[0.8rem] font-medium uppercase tracking-[0.08em] text-cream/85 hover:text-gold transition-colors py-2"
-                    aria-haspopup="true"
-                  >
-                    {item.label}
-                    <ChevronDownIcon className="size-3.5 transition-transform duration-200 group-hover:rotate-180" />
-                  </button>
-                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 opacity-0 invisible translate-y-1 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200">
-                    <ul className="w-60 bg-charcoal border border-charcoal-border border-t-2 border-t-gold shadow-2xl shadow-black/60 py-2.5">
-                      {categories.map((c) => (
-                        <li key={c.slug}>
-                          <Link
-                            href={`/products/${c.slug}`}
-                            className="block px-5 py-2.5 text-[0.8rem] uppercase tracking-wide text-cream/80 hover:text-gold hover:bg-black/40 transition-colors"
-                          >
-                            {c.label}
-                          </Link>
-                        </li>
-                      ))}
-                      <li className="border-t border-charcoal-border mt-1.5 pt-1.5">
-                        <Link
-                          href="/products"
-                          className="block px-5 py-2.5 text-[0.8rem] font-semibold uppercase tracking-wide text-gold hover:text-gold-light transition-colors"
-                        >
-                          All Products
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              ) : (
-                <div key={item.href} className="group">
-                  <NavLink href={item.href} label={item.label} active={pathname === item.href} />
-                </div>
-              )
-            )}
+            {primaryNav.map((item) => (
+              <div key={item.href} className="group">
+                <NavLink href={item.href} label={item.label} active={pathname === item.href} />
+              </div>
+            ))}
           </nav>
 
           <div className="hidden lg:block">
@@ -135,13 +101,13 @@ export default function Header() {
           ))}
           <div className="mt-5 bg-charcoal border border-charcoal-border px-4 py-4">
             <p className="font-display text-[0.7rem] uppercase tracking-[0.2em] text-gold mb-3">
-              Shop by Category
+              Photo Gallery
             </p>
             <div className="flex flex-col divide-y divide-charcoal-border">
               {categories.map((c) => (
                 <Link
                   key={c.slug}
-                  href={`/products/${c.slug}`}
+                  href={`/gallery?tab=${c.slug}`}
                   onClick={() => setOpen(false)}
                   className="text-sm text-cream/80 hover:text-gold transition-colors py-2.5"
                 >

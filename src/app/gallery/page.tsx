@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import PageHero from "@/components/ui/PageHero";
 import Container from "@/components/ui/Container";
 import GalleryTabs from "@/components/gallery/GalleryTabs";
@@ -26,7 +27,9 @@ export default function GalleryPage() {
       />
       <section className="bg-black py-16 sm:py-20">
         <Container>
-          <GalleryTabs photosByCategory={photosByCategory} />
+          <Suspense fallback={null}>
+            <GalleryTabs photosByCategory={photosByCategory} />
+          </Suspense>
         </Container>
       </section>
     </>

@@ -8,8 +8,7 @@ import { featuredCardPhotos } from "@/data/featuredCardPhotos";
 /**
  * Real shop photography, hand-picked from the current inventory — see
  * src/data/featuredCardPhotos.ts. Deliberately carries no price or product
- * copy: this section replaces LatestArrivals (fictional demo inventory,
- * still intact at /products) as the homepage's card-photography moment.
+ * copy.
  */
 export default function FeaturedCards() {
   return (

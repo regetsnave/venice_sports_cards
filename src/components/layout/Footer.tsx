@@ -111,7 +111,6 @@ export default function Footer() {
           <p>
             &copy; {year} {business.name}. All rights reserved.
           </p>
-          <p className="italic">Concept website &mdash; not yet live.</p>
         </Container>
       </div>
     </footer>

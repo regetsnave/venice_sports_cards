@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import CardGallery from "@/components/ui/CardGallery";
 import type { RealCardPhoto, RealPhotoCategory } from "@/data/realCardPhotos";
 
@@ -20,12 +21,21 @@ const TABS: { key: RealPhotoCategory; label: string; altLabel: string }[] = [
  * whole grid rather than toggling CSS visibility on all four at once, so
  * inactive categories never load images or sit in the DOM.
  */
+/** Deep-link support: `/gallery?tab=pokemon` opens straight to that tab; anything unrecognized falls back to Sports Cards. */
+function isGalleryCategory(value: string | null): value is RealPhotoCategory {
+  return TABS.some((t) => t.key === value);
+}
+
 export default function GalleryTabs({
   photosByCategory,
 }: {
   photosByCategory: Partial<Record<RealPhotoCategory, RealCardPhoto[]>>;
 }) {
-  const [active, setActive] = useState<RealPhotoCategory>("sports-cards");
+  const searchParams = useSearchParams();
+  const initialTab = searchParams.get("tab");
+  const [active, setActive] = useState<RealPhotoCategory>(
+    isGalleryCategory(initialTab) ? initialTab : "sports-cards"
+  );
   const tab = TABS.find((t) => t.key === active)!;
   const photos = photosByCategory[active] ?? [];
   const holyGrail = active === "pokemon" ? photos.filter((p) => p.featured) : [];

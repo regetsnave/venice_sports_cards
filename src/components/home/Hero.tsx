@@ -1,12 +1,14 @@
 import Container from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/SectionHeading";
-import GradedSlab from "@/components/ui/concept/GradedSlab";
-import { heroPicks } from "@/data/demoInventory";
+import { withBasePath } from "@/lib/basePath";
+import { featuredCardPhotos } from "@/data/featuredCardPhotos";
 
-// heroPicks order: [pokemon, football, baseball, one-piece]. The
-// baseball slab is treated as the primary, front-facing card; the
-// other three fan out slightly behind it.
+const heroPhotos = featuredCardPhotos.slice(0, 4);
+
+// heroPhotos order follows featuredCardPhotos — the strongest real photo
+// is treated as the primary, front-facing card; the other three fan out
+// slightly behind it.
 const cardPositions = [
   { className: "left-[2%] top-16 w-32 sm:w-40 -rotate-[13deg]", z: "z-0", delay: "420ms" },
   { className: "left-[24%] top-6 w-36 sm:w-44 -rotate-[6deg]", z: "z-10", delay: "480ms" },
@@ -58,8 +60,8 @@ export default function Hero() {
           </p>
           <div className="hero-in mt-9 flex flex-col sm:flex-row gap-4" style={{ animationDelay: "340ms" }}>
             <ButtonLink href="/sell">Sell Your Cards</ButtonLink>
-            <ButtonLink href="/products" variant="secondary">
-              Browse Products
+            <ButtonLink href="/gallery" variant="secondary">
+              Browse Photo Gallery
             </ButtonLink>
           </div>
         </div>
@@ -73,18 +75,21 @@ export default function Hero() {
             }}
             aria-hidden="true"
           />
-          {heroPicks.map((card, i) => (
+          {heroPhotos.map((photo, i) => (
             <div
-              key={card.id}
-              className={`hero-in absolute aspect-[5/7] ${cardPositions[i].className} ${cardPositions[i].z}`}
+              key={photo.id}
+              className={`hero-in absolute aspect-[5/7] rounded-xl border border-charcoal-border bg-gradient-to-b from-charcoal-light to-black p-2 shadow-xl shadow-black/50 ${cardPositions[i].className} ${cardPositions[i].z}`}
               style={{ animationDelay: cardPositions[i].delay }}
             >
-              <GradedSlab card={card} />
+              <img
+                src={withBasePath(photo.thumbSrc)}
+                alt="Card from Venice Sports Cards & Collectibles"
+                width={photo.width}
+                height={photo.height}
+                className="h-full w-full object-contain rounded-md"
+              />
             </div>
           ))}
-          <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 z-30 text-[0.6rem] font-display uppercase tracking-widest text-gray-500 bg-black/60 px-2.5 py-1 whitespace-nowrap">
-            Concept Preview &mdash; demo cards for illustration only
-          </span>
         </div>
       </Container>
     </section>

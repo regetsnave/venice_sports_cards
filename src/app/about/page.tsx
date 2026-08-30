@@ -4,9 +4,7 @@ import PageHero from "@/components/ui/PageHero";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
 import WhyShopWithUs from "@/components/home/WhyShopWithUs";
-import DisplayCaseWall from "@/components/ui/concept/DisplayCaseWall";
-import CardBoxStack from "@/components/ui/concept/CardBoxStack";
-import StoreSignArt from "@/components/ui/concept/StoreSignArt";
+import AboutCollage from "@/components/home/AboutCollage";
 import { business } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -28,14 +26,7 @@ export default function AboutPage() {
         <Container className="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
           <div className="relative">
             <div className="pointer-events-none absolute -inset-3 border border-gold-dark/25" aria-hidden="true" />
-            <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[26rem] sm:h-[30rem] shadow-[0_30px_60px_-25px_rgba(0,0,0,0.35)]">
-              <DisplayCaseWall className="row-span-2" />
-              <CardBoxStack />
-              <StoreSignArt />
-            </div>
-            <p className="mt-3 text-xs text-charcoal/50 italic">
-              Concept visuals for website design purposes &mdash; final photography to be provided by the shop.
-            </p>
+            <AboutCollage className="h-[26rem] sm:h-[30rem] shadow-[0_30px_60px_-25px_rgba(0,0,0,0.35)]" />
           </div>
 
           <div>
